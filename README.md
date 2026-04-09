@@ -14,8 +14,8 @@
 
 | Field | Details |
 |---|---|
-| **Name** | DEEBAK G R |
-| **Register No.** | 22CS043 |
+| **Name** | DEEPAK S |
+| **Register No.** | 22IT018 |
 | **Mentor** | Ajayan C |
 | **Package** | `ZCIT_HOSP_IT018` |
 | **Naming Convention** | `IT018` suffix on all objects |
