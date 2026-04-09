@@ -1,0 +1,77 @@
+unmanaged implementation in class zbp_appt_saver_it18 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZCIT_APPT_HI_IT18 alias AppointmentHdr
+  implementation in class zbp_appt_hdr_it18 unique
+  draft table zcit__hdr_d
+  lock master total etag LocalLastChangedAt
+  authorization master ( instance )
+  etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  draft action Activate optimized;
+  draft action Discard;
+
+  field ( mandatory : create ) AppointmentId;
+  field ( readonly : update ) AppointmentId;
+  field ( readonly ) LocalLastChangedAt;
+
+  association _appointmentitem { create; with draft; }
+
+  mapping for zcit_appt_h_it18
+  {
+    AppointmentId      = appointmentid;
+    PatientName        = patientname;
+    PatientAge         = patientage;
+    Gender             = gender;
+    ContactNumber      = contactnumber;
+    DoctorName         = doctorname;
+    Department         = department;
+    AppointmentDate    = appointmentdate;
+    AppointmentStatus  = appointmentstatus;
+    ConsultationFee    = consultationfee;
+    Currency           = currency;
+    LocalCreatedBy     = local_created_by;
+    LocalCreatedAt     = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZCIT_APPT_II_IT18 alias AppointmentItm
+  implementation in class zbp_appt_itm_it18 unique
+  draft table zcit_itm_d_18
+  lock dependent by _appointmentHeader
+  authorization dependent by _appointmentHeader
+  etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( readonly : update, mandatory : create ) SlotNumber;
+  field ( readonly ) AppointmentId;
+
+  association _appointmentHeader { with draft; }
+
+  mapping for zcit_appt_i_it18
+  {
+    AppointmentId  = appointmentid;
+    SlotNumber     = slotnumber;
+    SlotTime       = slottime;
+    Diagnosis      = diagnosis;
+    Prescription   = prescription;
+    FollowUpDate   = followupdate;
+    SlotStatus     = slotstatus;
+    LocalCreatedBy     = local_created_by;
+    LocalCreatedAt     = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

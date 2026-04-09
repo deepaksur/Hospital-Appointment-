@@ -1,0 +1,83 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Appointment',
+    typeNamePlural: 'Appointments',
+    title: { type: #STANDARD, label: 'Appointment', value: 'AppointmentId' }
+  }
+}
+annotate entity ZCIT_APPT_HC_IT18 with
+{
+  @UI.facet: [
+    {
+      id: 'AppointmentHeader',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Appointment Details',
+      position: 10
+    },
+    {
+      id: 'AppointmentItems',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Slot Details',
+      position: 20,
+      targetElement: '_appointmentitem'
+    }
+  ]
+
+  @UI: { lineItem: [{position: 10, label: 'Appointment ID'}],
+         identification: [{position: 10, label: 'Appointment ID'}],
+         selectionField: [{position: 10}] }
+  AppointmentId;
+
+  @UI: { lineItem: [{position: 20, label: 'Patient Name'}],
+         identification: [{position: 20, label: 'Patient Name'}],
+         selectionField: [{position: 20}] }
+  PatientName;
+
+  @UI: { lineItem: [{position: 30, label: 'Age'}],
+         identification: [{position: 30, label: 'Age'}] }
+  PatientAge;
+
+  @UI: { lineItem: [{position: 40, label: 'Gender'}],
+         identification: [{position: 40, label: 'Gender'}] }
+  Gender;
+
+  @UI: { lineItem: [{position: 50, label: 'Contact'}],
+         identification: [{position: 50, label: 'Contact Number'}] }
+  ContactNumber;
+
+  @UI: { lineItem: [{position: 60, label: 'Doctor Name'}],
+         identification: [{position: 60, label: 'Doctor Name'}],
+         selectionField: [{position: 30}] }
+  DoctorName;
+
+  @UI: { lineItem: [{position: 70, label: 'Department'}],
+         identification: [{position: 70, label: 'Department'}],
+         selectionField: [{position: 40}] }
+  Department;
+
+  @UI: { lineItem: [{position: 80, label: 'Appt. Date'}],
+         identification: [{position: 80, label: 'Appointment Date'}] }
+  AppointmentDate;
+
+  @UI: { lineItem: [{position: 90, label: 'Status'}],
+         identification: [{position: 90, label: 'Status'}],
+         selectionField: [{position: 50}] }
+  AppointmentStatus;
+
+  @UI: { lineItem: [{position: 100, label: 'Fee'}],
+         identification: [{position: 100, label: 'Consultation Fee'}] }
+  ConsultationFee;
+
+  @UI: { lineItem: [{position: 110, label: 'Currency'}],
+         identification: [{position: 110, label: 'Currency'}] }
+  Currency;
+
+  @UI: { identification: [{position: 120, label: 'Created By'}] }
+  LocalCreatedBy;
+
+  @UI: { identification: [{position: 130, label: 'Created At'}] }
+  LocalCreatedAt;
+}

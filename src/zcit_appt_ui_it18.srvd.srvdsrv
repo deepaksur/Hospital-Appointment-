@@ -1,0 +1,5 @@
+@EndUserText.label: 'Hospital Appointment Service Definition'
+define service ZCIT_APPT_UI_IT18 {
+  expose ZCIT_APPT_HC_IT18;
+  expose ZCIT_APPT_IC_IT18;
+}
